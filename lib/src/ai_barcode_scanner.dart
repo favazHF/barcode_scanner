@@ -178,6 +178,9 @@ class AiBarcodeScanner extends StatefulWidget {
   /// You can add more actions to the app bar using this parameter
   final List<Widget>? actions;
 
+  /// Gallery optional (default: false)
+  final bool isGalleryOptional;
+
   /// Optional function to be called when clicking the back button on the app bar
   /// If not provided, the default behavior is to pop the current route from the navigator
   final void Function()? onPop;
@@ -216,6 +219,7 @@ class AiBarcodeScanner extends StatefulWidget {
     this.buttonAlignment,
     this.actions,
     this.onPop,
+    this.isGalleryOptional = false,
   });
 
   @override
@@ -344,7 +348,7 @@ class _AiBarcodeScannerState extends State<AiBarcodeScanner> {
                     );
                   },
                 ),
-              if (!isLandscape)
+              if (!isLandscape && !widget.isGalleryOptional)
                 Align(
                   alignment: widget.buttonAlignment ??
                       Alignment.lerp(
